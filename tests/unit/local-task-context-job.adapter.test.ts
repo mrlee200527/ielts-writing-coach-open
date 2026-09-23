@@ -1,0 +1,3 @@
+import { describe,expect,it } from "vitest";
+import { LocalTaskContextJobAdapter } from "../../src/infrastructure/jobs/local-task-context-job.adapter";
+describe("local task context jobs",()=>{it("deduplicates and releases deterministically",async()=>{const seen:unknown[]=[];const jobs=new LocalTaskContextJobAdapter(async payload=>{seen.push(payload);});const a=jobs.enqueue({name:"task-context",idempotencyKey:"same",payload:{taskId:"t"}});expect(jobs.enqueue({name:"task-context",idempotencyKey:"same",payload:{taskId:"t"}}).id).toBe(a.id);await jobs.run(a.id);expect(seen).toEqual([{taskId:"t"}]);expect(jobs.status(a.id)?.state).toBe("COMPLETED");});});

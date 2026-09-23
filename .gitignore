@@ -1,0 +1,37 @@
+# Dependencies and builds
+node_modules/
+.next/
+out/
+dist/
+coverage/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local runtime data
+.data/
+data/local/
+uploads/
+tmp/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+
+# Large source media stays local; track metadata/transcripts separately.
+教师参考视频转录/**/*.mp3
